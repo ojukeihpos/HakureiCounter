@@ -40,6 +40,9 @@
             colorDialog1 = new ColorDialog();
             loadFileButton = new Button();
             label2 = new Label();
+            resetButton = new Button();
+            statusText = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
             contextMenuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -120,11 +123,35 @@
             label2.TabIndex = 6;
             label2.Text = "label2";
             // 
+            // resetButton
+            // 
+            resetButton.Location = new Point(320, 276);
+            resetButton.Name = "resetButton";
+            resetButton.Size = new Size(75, 23);
+            resetButton.TabIndex = 7;
+            resetButton.Text = "Reset";
+            resetButton.UseVisualStyleBackColor = true;
+            resetButton.Click += resetButton_Click;
+            // 
+            // statusText
+            // 
+            statusText.AutoSize = true;
+            statusText.Location = new Point(58, 280);
+            statusText.Name = "statusText";
+            statusText.Size = new Size(0, 15);
+            statusText.TabIndex = 8;
+            // 
+            // timer1
+            // 
+            timer1.Tick += Timer_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(444, 307);
+            Controls.Add(statusText);
+            Controls.Add(resetButton);
             Controls.Add(label2);
             Controls.Add(loadFileButton);
             Controls.Add(panel1);
@@ -133,10 +160,12 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Hakurei Counter";
+            FormClosed += OnFormClosed;
             Load += Form1_Load;
             contextMenuStrip1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -151,5 +180,8 @@
         private ToolStripMenuItem changeTextColourToolStripMenuItem;
         private Button loadFileButton;
         private Label label2;
+        private Button resetButton;
+        private Label statusText;
+        private System.Windows.Forms.Timer timer1;
     }
 }
