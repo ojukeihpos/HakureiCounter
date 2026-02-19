@@ -1,4 +1,4 @@
-namespace yt_dlp_gui
+namespace HakureiCounter
 {
     internal static class Program
     {

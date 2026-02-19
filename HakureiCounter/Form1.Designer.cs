@@ -1,4 +1,4 @@
-﻿namespace yt_dlp_gui
+﻿namespace HakureiCounter
 {
     partial class Form1
     {
@@ -43,6 +43,7 @@
             resetButton = new Button();
             statusText = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            changeTextFontToolStripMenuItem = new ToolStripMenuItem();
             contextMenuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -69,9 +70,9 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { changeBackgroundColourToolStripMenuItem, changeTextColourToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { changeBackgroundColourToolStripMenuItem, changeTextColourToolStripMenuItem, changeTextFontToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(220, 48);
+            contextMenuStrip1.Size = new Size(220, 92);
             contextMenuStrip1.ItemClicked += contextMenuStrip1_ItemClicked;
             // 
             // changeBackgroundColourToolStripMenuItem
@@ -145,6 +146,12 @@
             // 
             timer1.Tick += Timer_Tick;
             // 
+            // changeTextFontToolStripMenuItem
+            // 
+            changeTextFontToolStripMenuItem.Name = "changeTextFontToolStripMenuItem";
+            changeTextFontToolStripMenuItem.Size = new Size(219, 22);
+            changeTextFontToolStripMenuItem.Text = "Change text font";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -183,5 +190,6 @@
         private Button resetButton;
         private Label statusText;
         private System.Windows.Forms.Timer timer1;
+        private ToolStripMenuItem changeTextFontToolStripMenuItem;
     }
 }

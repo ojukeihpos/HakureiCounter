@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace yt_dlp_gui.Properties {
+namespace HakureiCounter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -68,6 +68,18 @@ namespace yt_dlp_gui.Properties {
             }
             set {
                 this["fontColour"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 36pt")]
+        public global::System.Drawing.Font selectedFont {
+            get {
+                return ((global::System.Drawing.Font)(this["selectedFont"]));
+            }
+            set {
+                this["selectedFont"] = value;
             }
         }
     }

@@ -1,10 +1,8 @@
 using Cyotek.Windows.Forms;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing.Drawing2D;
-using System.IO;
 
-namespace yt_dlp_gui
+namespace HakureiCounter
 {
 
     // TODO: Save loaded file between sessions
@@ -76,11 +74,12 @@ namespace yt_dlp_gui
             {
                 label2.Text = "No file loaded!";
             }
-            
+
             if (Properties.Settings.Default.backgroundColour != 0)
             {
                 panel1.BackColor = Color.FromArgb(Properties.Settings.Default.backgroundColour);
-            } else
+            }
+            else
             {
                 panel1.BackColor = Color.Green;
             }
@@ -89,6 +88,10 @@ namespace yt_dlp_gui
             {
                 label1.ForeColor = Color.FromArgb(Properties.Settings.Default.fontColour);
             }
+            if (!Properties.Settings.Default.PropertyValues["selectedFont"].UsingDefaultValue)
+            {
+                label1.Font = Properties.Settings.Default.selectedFont;
+            }
         }
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -96,6 +99,7 @@ namespace yt_dlp_gui
             if (sender is ContextMenuStrip cms)
             {
                 ColorPickerDialog cD = new ColorPickerDialog();
+                FontDialog fD = new FontDialog();
 
                 switch (e.ClickedItem.Text)
                 {
@@ -118,6 +122,17 @@ namespace yt_dlp_gui
                             Properties.Settings.Default.Save();
                         }
                         break;
+                    case "Change text font":
+                        cms.Close();
+                        fD.ShowColor = true;
+                        fD.Font = label1.Font;
+                        if (fD.ShowDialog() == DialogResult.OK)
+                        {
+                            label1.Font = fD.Font;
+                            Properties.Settings.Default.selectedFont = fD.Font;
+                            Properties.Settings.Default.Save();
+                        }
+                        break;
                 }
 
 
@@ -128,6 +143,11 @@ namespace yt_dlp_gui
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select text file";
+            if (!Directory.Exists(Path.Combine(Application.StartupPath, "counters")))
+            {
+                Directory.CreateDirectory(Path.Combine(Application.StartupPath, "counters")); // create counters subfolder
+                File.WriteAllText(Path.Combine(Application.StartupPath, "counters/example.txt"), "0"); // if we're here we can probably assume the subfolder is empty (because we just made it)
+            }
             openFileDialog.InitialDirectory = Path.Combine(Application.StartupPath, "counters");
             openFileDialog.Filter = "Text files (*.txt)|*.txt";
             openFileDialog.FilterIndex = 1;
@@ -222,6 +242,7 @@ namespace yt_dlp_gui
             panel1.BackColor = Color.Green;
             label1.ForeColor = Color.Black;
             label1.Text = "0";
+            label1.Font = new Font(new FontFamily("Microsoft Sans Serif"), 36f, FontStyle.Bold);
             label2.Text = "No file loaded!";
             filePath = "";
             Properties.Settings.Default.LoadedFile = "";
